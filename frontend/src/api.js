@@ -31,52 +31,29 @@ export type Transaction = {
  * If necessary, adapt the backend address below:
  */
 
-const backend = 'http://localhost:3000'
+const backend = 'http://localhost:3001'
 
-export function login(
-  login: string, 
-  password: string,
-): Promise<{token: string, owner: User}> {
+export function login(login: string, password: string,): Promise<{token: string, owner: User}> {
   return postJson('/auth/login', {login, password}).then(parseJSON)
 }
 
-export function signup(
-  login: string, 
-  firstname: string, 
-  lastname: string, 
-  password: string,
-): Promise<User> {
+export function signup(login: string, firstname: string, lastname: string, password: string,): Promise<User> {
   return postJson('/auth/register', {login, firstname, lastname, password}).then(parseJSON)
 }
 
-export function getAccountDetails(
-  token: string,
-): Promise<{accountNr: string, amount: number, owner: User}> {
+export function getAccountDetails(token: string,): Promise<{accountNr: string, amount: number, owner: User}> {
   return getAuthenticatedJson(`/accounts`, token).then(parseJSON)
 }
 
-export function getAccount(
-  accountNr: AccountNr, 
-  token: string,
-): Promise<{accountNr: AccountNr, owner: {firstname: string, lastname: string}}> {
+export function getAccount(accountNr: AccountNr, token: string,): Promise<{accountNr: AccountNr, owner: {firstname: string, lastname: string}}> {
   return getAuthenticatedJson(`/accounts/${accountNr}`, token).then(parseJSON)
 }
 
-export function transfer(
-  target: AccountNr, 
-  amount: number, 
-  token: string,
-): Promise<TransferResult> {
+export function transfer(target: AccountNr, amount: number, token: string,): Promise<TransferResult> {
   return postAuthenticatedJson('/accounts/transactions', token, {target, amount}).then(parseJSON)
 }
 
-export function getTransactions(
-  token: string,
-  fromDate: string = "", 
-  toDate: string = "", 
-  count: number = 3, 
-  skip: number = 0,
-): Promise<{result: Array<Transaction>, query: { resultcount: number}}> {
+export function getTransactions(token: string, fromDate: string = "", toDate: string = "", count: number = 3, skip: number = 0,): Promise<{result: Array<Transaction>, query: { resultcount: number}}> {
   return getAuthenticatedJson(
     `/accounts/transactions?fromDate=${fromDate}&toDate=${toDate}&count=${count}&skip=${skip}`, 
     token).then(parseJSON)

@@ -16,7 +16,7 @@ import Dashboard from './components/Dashboard'
 import AllTransactions from './components/AllTransactions'
 import PrivateRoute from './components/PrivateRoute'
 
-import { Container } from 'semantic-ui-react'
+import { Container, Menu, Segment } from 'semantic-ui-react'
 
 import * as api from './api'
 
@@ -73,17 +73,22 @@ class App extends React.Component {
     const MenuBar = withRouter(({ history, location: { pathname } }) => {
       if(isAuthenticated && user) {
         return (
+          <Segment stacked>
           <Container>
-            <span>{user.firstname} {user.lastname} &ndash; {user.accountNr}</span>
-            {/* Links inside the App are created using the react-router's Link component */}
-            <Link to="/">Home</Link>
-            <Link to="/dashboard">Kontoübersicht</Link>
-            <Link to="/transactions">Zahlungen</Link>
-            <a href="/logout" onClick={(event) => {
-              event.preventDefault()
-              this.signout(() => history.push('/'))
-            }}>Logout {user.firstname} {user.lastname}</a>
+            <Menu pointing secondary>
+              <Menu.Item header> {user.firstname} {user.lastname} &ndash; {user.accountNr} </Menu.Item>
+              <Menu.Item as={Link} to="/" name='Home' active={pathname === '/'} onClick={this.handleItemClick}/>
+              <Menu.Item as={Link} to="/dashboard" name='Kontoübersicht' active={pathname === '/dashboard'} onClick={this.handleItemClick}/>
+              <Menu.Item as={Link} to="/transactions" name='Zahlungen' active={pathname === '/transactions'} onClick={this.handleItemClick} />
+              <Menu.Menu position='right'>
+                <Menu.Item name={`Logout ${user.firstname} ${user.lastname}`} active={pathname === 'logout'} onClick={(event) => {
+                  event.preventDefault()
+                  this.signout(() => history.push('/'))
+                }} />
+              </Menu.Menu>
+            </Menu>
           </Container>
+          </Segment>
         )
       } else {
         return null

@@ -81,7 +81,7 @@ class Login extends React.Component {
                 <Input onChange={this.handlePasswordChanged} icon='user' iconPosition='left' placeholder='Password' type="password" value={password} />
               </Form.Field>
               <Form.Field>
-                <Button fluid size='large' content='Log-in' color='teal' onClick={this.handleSubmit}>Log-in</Button>
+                <Button fluid size='large' color='teal' onClick={this.handleSubmit}>Log-in</Button>
               </Form.Field>
             </Form>
           </Segment>
