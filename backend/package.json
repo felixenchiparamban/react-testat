@@ -1,0 +1,22 @@
+{
+  "name": "wed3testat",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "test": "./node_modules/.bin/jasmine-node --verbose --captureExceptions ./spec/"
+  },
+  "dependencies": {
+    "body-parser": "~1.15.2",
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.1",
+    "debug": "~2.2.0",
+    "express": "~4.14.0",
+    "express-jwt": "^5.1.0",
+    "jasmine-node": "^1.14.5",
+    "jsonwebtoken": "^7.2.1",
+    "morgan": "~1.7.0",
+    "nedb": "^1.8.0",
+    "serve-favicon": "~2.3.0"
+  }
+}
