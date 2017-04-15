@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import {Card, Grid} from 'semantic-ui-react';
+import {Card, Header, Grid} from 'semantic-ui-react';
 import NewPayment from './NewPayment';
 import LastTransactions from './LastTransactions';
 import type {User} from '../api'
@@ -24,7 +24,7 @@ export type Props = {
 
 class Dashboard extends React.Component {
 
-    constructor(props: any) {
+    constructor(props: Props) {
         super(props)
 
         const user = sessionStorage.getItem('user');
@@ -34,21 +34,20 @@ class Dashboard extends React.Component {
     }
 
     render() {
-        console.log(this.state);
         return (
             <Card fluid>
                 <Card.Content>
                     <Card.Header>
-                        Dashboard - {this.state.user.accountNr}
+                        <Header as="h2">Kontoübersicht - {this.state.user.accountNr}</Header>
                     </Card.Header>
                 </Card.Content>
                 <Card.Content>
-                    <Grid columns={2} stackable>
-                        <Grid.Row>
+                    <Grid columns={3} stackable>
+                        <Grid.Row >
                             <Grid.Column>
-                                <NewPayment></NewPayment>
+                                <NewPayment token={this.props.token}></NewPayment>
                             </Grid.Column>
-                            <Grid.Column>
+                            <Grid.Column >
                                 <LastTransactions/>
                             </Grid.Column>
                         </Grid.Row>
