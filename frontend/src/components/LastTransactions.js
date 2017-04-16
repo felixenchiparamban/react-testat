@@ -44,15 +44,14 @@ class LastTransactions extends React.Component {
 
                     <Table.Body>
                         {
-                            Object.keys(this.state.transactions).map((t: Transaction) => {
-                                let tr = this.state.transactions[t];
+                            this.state.transactions.map((tr: Transaction) => {
                                 return (
-                                    <Table.Row key={t}>
-                                        <Table.Cell>{tr.date}</Table.Cell>
+                                    <Table.Row key={tr.date}>
+                                        <Table.Cell>{new Date(tr.date).toLocaleString('ch')}</Table.Cell>
                                         <Table.Cell>{tr.from}</Table.Cell>
                                         <Table.Cell>{tr.target}</Table.Cell>
-                                        <Table.Cell textAlign='right'>{tr.amount}</Table.Cell>
-                                        <Table.Cell textAlign='right'>{tr.total}</Table.Cell>
+                                        <Table.Cell textAlign='right'>CHF {tr.amount.toFixed(2)}</Table.Cell>
+                                        <Table.Cell textAlign='right'>CHF {tr.total.toFixed(2)}</Table.Cell>
                                     </Table.Row>
                                 )
                             })
