@@ -63,12 +63,11 @@ class LastTransactions extends React.Component {
         );
     }
 
-    getTransactionRows() {
-
+    componentWillReceiveProps(nextProps){
+        this.updateTransactions();
     }
 
-    componentDidMount() {
-
+    updateTransactions(){
         // Use the api functions to call the API server. For example, the transactions
         // can be retrieved and stored in the state as follows:
         let currentDate = new Date();
@@ -82,6 +81,10 @@ class LastTransactions extends React.Component {
             .then((transactions: Transactions) => {
                 this.setState({transactions: transactions.result});
             });
+    }
+
+    componentDidMount() {
+        this.updateTransactions();
     }
 }
 

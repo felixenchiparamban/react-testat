@@ -17,7 +17,9 @@ class Dashboard extends React.Component {
         const user = sessionStorage.getItem('user');
         this.state = {
             user: JSON.parse(user),
+            paymentDone: 0
         }
+        this.handleSuccessfulPayment = this.handleSuccessfulPayment.bind(this);
     }
 
     render() {
@@ -32,10 +34,11 @@ class Dashboard extends React.Component {
                     <Grid stackable>
                         <Grid.Row >
                             <Grid.Column width={6}>
-                                <NewPayment token={this.props.token} user={this.state.user}></NewPayment>
+                                <NewPayment token={this.props.token} user={this.state.user}
+                                            onPaymentSuccess={this.handleSuccessfulPayment}></NewPayment>
                             </Grid.Column>
                             <Grid.Column width={10}>
-                                <LastTransactions token={this.props.token}/>
+                                <LastTransactions token={this.props.token} updateTransactions={this.state.paymentDone}/>
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
@@ -43,6 +46,12 @@ class Dashboard extends React.Component {
 
             </Card>
         )
+    }
+
+    handleSuccessfulPayment(){
+        this.setState({
+            paymentDone: this.state.paymentDone + 1
+        });
     }
 }
 

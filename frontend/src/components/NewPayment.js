@@ -4,7 +4,7 @@
 import React from 'react';
 import {Container, Header, Form, Button} from 'semantic-ui-react';
 import type {User} from '../api';
-import type {Transaction} from '../api';
+import type {TransferResult} from '../api';
 import {getAccountDetails, getAccount, transfer} from '../api';
 
 
@@ -19,58 +19,103 @@ export type AccountDetail = {
     owner: User
 }
 
+export type TargetAccount = {
+    accountNr: AccountNr,
+    owner: {
+        firstname: string,
+        lastname: string
+    }
+}
+
 class NewPayment extends React.Component {
 
     constructor(props: Props) {
         super(props);
 
         this.state = {
-            targetAccount: '',
-            amount: 0
+            targetAccountNr: '1000002',
+            targetAccount: null,
+            amount: 0,
+            isAmountValid: false
         };
 
         this.onAmountChange = this.onAmountChange.bind(this);
         this.onTargetAccountChange = this.onTargetAccountChange.bind(this);
+        this.pay = this.pay.bind(this);
     }
 
     render() {
         return (
             <Container>
                 <Header as="h3">Neue Zahlung</Header>
-                <Form>
+                <Form onSubmit={this.pay}>
                     <Form.Field>
                         <label>Von</label>
                         <input placeholder='Von' readOnly={true}
                                value={this.state.fromAccount ?
                                    this.getAccountDescription(this.state.fromAccount) : this.props.user.accountNr}/>
                     </Form.Field>
-                    <Form.Field>
+                    <Form.Field className={this.isTargetAccountValid.bind(this) ? "" : "error"}>
                         <label>Nach</label>
-                        <input placeholder='Zielkontonummer' value={this.state.targetAccount}
+                        <input placeholder='Zielkontonummer' value={this.state.targetAccountNr}
                                onChange={this.onTargetAccountChange}/>
-                        <div ></div>
+                        <div className="error" hidden={this.isTargetAccountValid()}>
+                            {this.state.targetAccountNr} ist ungültig
+                        </div>
                     </Form.Field>
-                    <Form.Field>
+                    <Form.Field className={this.state.amount && !this.state.isAmountValid ? "error" : ""}>
                         <label>Betrag</label>
                         <input type="number" value={this.state.amount} onChange={this.onAmountChange}/>
                     </Form.Field>
-                    <Button type='submit' className="primary">Submit</Button>
+                    <Button type='submit' className="primary" onClick={this.pay}
+                            disabled={!this.state.isAmountValid || !this.state.targetAccount}>Zahlen</Button>
                 </Form>
             </Container>
         );
     }
 
+    pay(e) {
+        if (this.state.isAmountValid && this.state.targetAccount) {
+            transfer(this.state.targetAccountNr, this.state.amount, this.props.token)
+                .then((result: TransferResult) => {
+                    this.props.onPaymentSuccess();
+                })
+                .catch((error: any) => {
+                    console.error(error);
+                });
+        }
+        e.preventDefault();
+    }
+
     onAmountChange(e) {
+        const value = e.target.value;
+        this.state.isAmountValid = (!isNaN(value) && value > 0) ? true : false;
         this.setState({
-            amount: e.target.value
+            amount: value
         });
     }
 
+    isTargetAccountValid() {
+        return this.state.targetAccountNr ? this.state.targetAccount : true;
+    }
 
     onTargetAccountChange(e) {
+        const value = e.target.value;
         this.setState({
-            targetAccount: e.target.value
+            targetAccountNr: value
         });
+
+        getAccount(value, this.props.token)
+            .then((account: TargetAccount) => {
+                this.setState({
+                    targetAccount: account
+                });
+            })
+            .catch((error: any) => {
+                this.setState({
+                    targetAccount: null
+                });
+            });
     }
 
     getAccountDescription(account: AccountDetail): string {
