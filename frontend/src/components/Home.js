@@ -2,8 +2,12 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
+
 import { Form, Segment, Button, Grid } from 'semantic-ui-react'
 
+/*
+* - Ist für die Type check hier.
+* */
 export type Props = {
   isAuthenticated: boolean,
 }
@@ -18,8 +22,8 @@ const Home = ({isAuthenticated}: Props) => (
               <Segment stacked>
                 <h3>E-Banking Portal</h3>
                 <p>Willkommen zurück!</p>
+                <Button as={Link} to={'/dashboard'}>Zum Dashboard</Button>
               </Segment>
-              <Button as={Link} to={'/dashboard'}>Zum Dashboard</Button>
             </Grid.Column>
           </Grid>
         </div>

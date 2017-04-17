@@ -106,16 +106,18 @@ class AllTransactions extends React.Component {
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    { this.state.transactions.map(data => {
-                                        return (
-                                            <tr key={data.date + data.from + data.accountNr}>
-                                                <td>{data.date }</td>
-                                                <td>{data.from}</td>
-                                                <td>{data.target}</td>
-                                                <td>{data.amount + " CHF" }</td>
-                                                <td>{data.total + " CHF"} </td>
-                                            </tr>)
-                                    })
+                                    {
+                                        this.state.transactions.map(data => {
+                                            return (
+                                                <tr key={data.date + data.from + data.accountNr}>
+                                                    <td>{data.date }</td>
+                                                    <td>{data.from}</td>
+                                                    <td>{data.target}</td>
+                                                    <td>{data.amount + " CHF" }</td>
+                                                    <td>{data.total + " CHF"} </td>
+                                                </tr>
+                                            )
+                                        })
                                     }
                                     </tbody>
                                 </table>

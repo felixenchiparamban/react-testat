@@ -2,13 +2,13 @@
 
 import React from 'react'
 import { Redirect, Link } from 'react-router-dom'
+
 import { Segment, Button, Input, Form, Grid } from 'semantic-ui-react'
 
 export type Props = {
   /* Callback to submit an authentication request to the server */
   authenticate: (login: string, password: string, callback: (error: ?Error) => void) => void,
-  /* We need to know what page the user tried to access so we can 
-     redirect after logging in */
+  /* We need to know what page the user tried to access so we can redirect after logging in */
   location: {
     state?: {
       from: string,
@@ -18,7 +18,7 @@ export type Props = {
 
 class Login extends React.Component {
   
-  props: Props
+  props: Props;
   
   state: {
     login: string,
@@ -47,8 +47,8 @@ class Login extends React.Component {
   }
 
   handleSubmit = (event: Event) => {
-    event.preventDefault()
-    const { login, password } = this.state
+    event.preventDefault();
+    const { login, password } = this.state;
     this.props.authenticate(login, password, (error) => {
       if(error) {
         this.setState({error})
@@ -59,9 +59,9 @@ class Login extends React.Component {
   }
 
   render() {
-    const { from } = this.props.location.state || { from: { pathname: '/dashboard' } }
-    const { redirectToReferrer, error, login, password } = this.state
-    
+    const { from } = this.props.location.state || { from: { pathname: '/dashboard' } };
+    const { redirectToReferrer, error, login, password } = this.state;
+
     if (redirectToReferrer) {
       return (
         <Redirect to={from}/>

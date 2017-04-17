@@ -1,0 +1,34 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'start' ]
+2 info using npm@4.1.2
+3 info using node@v7.7.2
+4 verbose run-script [ 'prestart', 'start', 'poststart' ]
+5 info lifecycle bank-of-rapperswil@0.0.1~prestart: bank-of-rapperswil@0.0.1
+6 silly lifecycle bank-of-rapperswil@0.0.1~prestart: no script for prestart, continuing
+7 info lifecycle bank-of-rapperswil@0.0.1~start: bank-of-rapperswil@0.0.1
+8 verbose lifecycle bank-of-rapperswil@0.0.1~start: unsafe-perm in lifecycle true
+9 verbose lifecycle bank-of-rapperswil@0.0.1~start: PATH: C:\Users\felix_2\AppData\Roaming\nvm\v7.7.2\node_modules\npm\bin\node-gyp-bin;C:\Users\felix_2\Documents\Unterricht_HSR\SEM_4\Module\WED3\Testat\react\frontend\node_modules\.bin;C:\Users\felix_2\Documents\Unterricht_HSR\SEM_4\Module\Verteilte-SW-Systeme\übungen\Woche_03\Installation_Files\apache-maven-3.3.9\bin;C:\Users\felix_2\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Ruby23-x64\bin;C:\Program Files\PostgreSQL\9.3\bin;C:\Users\felix_2\AppData\Roaming\npm;C:\Program Files\Java\jdk1.8.0_51\bin;C:\Users\felix_2\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files (x86)\apache-maven-3.3.9\bin
+10 verbose lifecycle bank-of-rapperswil@0.0.1~start: CWD: C:\Users\felix_2\Documents\Unterricht_HSR\SEM_4\Module\WED3\Testat\react\frontend
+11 silly lifecycle bank-of-rapperswil@0.0.1~start: Args: [ '/d /s /c', 'react-scripts start' ]
+12 verbose stack Error: kill ENOSYS
+12 verbose stack     at exports._errnoException (util.js:1033:11)
+12 verbose stack     at process.kill (internal/process.js:188:13)
+12 verbose stack     at process.listener (C:\Users\felix_2\AppData\Roaming\nvm\v7.7.2\node_modules\npm\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:95:15)
+12 verbose stack     at emitNone (events.js:86:13)
+12 verbose stack     at process.emit (events.js:188:7)
+12 verbose stack     at processEmit (C:\Users\felix_2\AppData\Roaming\nvm\v7.7.2\node_modules\npm\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:155:32)
+12 verbose stack     at Signal.wrap.onsignal (internal/process.js:215:44)
+13 verbose cwd C:\Users\felix_2\Documents\Unterricht_HSR\SEM_4\Module\WED3\Testat\react\frontend
+14 error Windows_NT 6.3.9600
+15 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "start"
+16 error node v7.7.2
+17 error npm  v4.1.2
+18 error code ENOSYS
+19 error errno ENOSYS
+20 error syscall kill
+21 error kill ENOSYS
+22 error If you need help, you may report this error at:
+22 error     <https://github.com/npm/npm/issues>
+23 verbose exit [ 1, true ]

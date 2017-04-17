@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { Redirect } from 'react-router-dom'
+
 import { Segment, Form, Button, Input, Grid } from 'semantic-ui-react'
 
 import { signup } from '../api'
@@ -51,18 +52,17 @@ class Signup extends React.Component {
   }
 
   handleSubmit = (event: Event) => {
-    event.preventDefault()
-    const { login, firstname, lastname, password } = this.state
+    event.preventDefault();
+    const { login, firstname, lastname, password } = this.state;
+
     signup(login, firstname, lastname, password).then(result => {
-      console.log("Signup result ", result)
+      console.log("Signup result ", result);
       this.setState({redirectToReferrer: true, error: null})
-    }).catch(error => 
-      this.setState({error})
-    )
-  }
+    }).catch(error => this.setState({error}))
+  };
 
   render() {    
-    const { redirectToReferrer, error } = this.state
+    const { redirectToReferrer, error } = this.state;
     
     if (redirectToReferrer) {
       return (

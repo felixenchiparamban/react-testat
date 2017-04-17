@@ -20,7 +20,7 @@ export type Props = {
 
 class Dashboard extends React.Component {
   
-  props: Props
+  props: Props;
   
   render() {    
 

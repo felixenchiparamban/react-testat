@@ -31,7 +31,7 @@ export type Transaction = {
  * If necessary, adapt the backend address below:
  */
 
-const backend = 'http://localhost:3001'
+const backend = 'http://localhost:3000';
 
 export function login(login: string, password: string,): Promise<{token: string, owner: User}> {
   return postJson('/auth/login', {login, password}).then(parseJSON)

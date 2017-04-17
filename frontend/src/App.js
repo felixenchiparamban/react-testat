@@ -2,12 +2,7 @@
 
 import React from 'react'
 
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  withRouter
-} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link, withRouter } from 'react-router-dom'
 
 import Home from './components/Home'
 import Login from './components/Login'
@@ -28,12 +23,12 @@ class App extends React.Component {
     isAuthenticated: boolean,
     token: ?string,
     user: ?User,
-  }
+  };
   
   constructor(props: any) {
-    super(props)
-    const token = sessionStorage.getItem('token')
-    const user = sessionStorage.getItem('user')
+    super(props);
+    const token = sessionStorage.getItem('token');
+    const user = sessionStorage.getItem('user');
     if(token && user) {
       this.state = {
         isAuthenticated: true,
@@ -48,7 +43,11 @@ class App extends React.Component {
       }
     }
   }
-  
+
+  /*
+  * - Für was steht hier die : vor die string?
+  * - Für was steht die ? vor die Error?
+  * */
   authenticate = (login: string, password: string, cb: (error: ?Error) => void) => {
     api.login(login, password)
       .then(({token, owner}) => {
@@ -68,10 +67,13 @@ class App extends React.Component {
   }
   
   render() {
-    const { isAuthenticated, user, token } = this.state
+    const { isAuthenticated, user, token } = this.state;
         
     const MenuBar = withRouter(({ history, location: { pathname } }) => {
       if(isAuthenticated && user) {
+        /*
+         * - wohin geht die aufruf this.handleItemClick?
+         * */
         return (
           <Segment stacked>
           <Container>
@@ -93,7 +95,7 @@ class App extends React.Component {
       } else {
         return null
       }
-    })
+    });
     
     return (
       <Router>
