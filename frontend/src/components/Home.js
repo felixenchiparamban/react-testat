@@ -4,6 +4,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Form, Segment, Button, Grid } from 'semantic-ui-react';
 
+/*
+* - Ist für die Type check hier.
+* */
 export type Props = {
   isAuthenticated: boolean,
 }
@@ -12,8 +15,16 @@ const Home = ({isAuthenticated}: Props) => (
   <div>
     { isAuthenticated
       ? <div>
-          <p>Willkommen zurück!</p>
-          <Link to={'/dashboard'}>Zum Dashboard</Link>
+          <Grid centered={true} verticalAlign="middle">
+            <Grid.Column style={{width:400}}>
+              <h1>Bank of Rapperswil</h1>
+              <Segment stacked>
+                <h3>E-Banking Portal</h3>
+                <p>Willkommen zurück!</p>
+                <Button as={Link} to={'/dashboard'}>Zum Dashboard</Button>
+              </Segment>
+            </Grid.Column>
+          </Grid>
         </div>
       : <Grid centered={true} verticalAlign="middle">
           <Grid.Column style={{width:400}}>
