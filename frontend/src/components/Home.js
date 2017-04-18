@@ -2,8 +2,7 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-
-import { Form, Segment, Button, Grid } from 'semantic-ui-react'
+import { Form, Segment, Button, Grid } from 'semantic-ui-react';
 
 /*
 * - Ist für die Type check hier.
