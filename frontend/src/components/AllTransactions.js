@@ -57,12 +57,12 @@ class AllTransactions extends React.Component {
     };
 
     onMonthChange = (event) => {
-        this.setState({selectedMonth: event.target.value}, this.getAllTransaction.bind(this));
+        this.setState({selectedMonth: event.target.value, skip: 0}, this.getAllTransaction.bind(this));
 
     };
 
     onYearChange = (event) => {
-        this.setState({selectedYear: event.target.value}, this.getAllTransaction.bind(this));
+        this.setState({selectedYear: event.target.value, skip: 0}, this.getAllTransaction.bind(this));
     };
 
     nextPage = (event) => {

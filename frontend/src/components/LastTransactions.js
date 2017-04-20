@@ -4,6 +4,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import {Container, Header, Table, Button} from 'semantic-ui-react';
+
 import type {Transaction} from '../api';
 import {getTransactions} from '../api';
 
