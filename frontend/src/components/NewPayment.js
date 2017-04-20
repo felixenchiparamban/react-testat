@@ -90,8 +90,8 @@ class NewPayment extends React.Component {
 
     onAmountChange(e) {
         const value = e.target.value;
-        this.setState.isAmountValid = (!isNaN(value) && value > 0) ? true : false;
         this.setState({
+            isAmountValid : (!isNaN(value) && value > 0) ? true : false,
             amount: value
         });
     }
