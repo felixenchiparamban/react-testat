@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import {Container, Header, Form, Button} from 'semantic-ui-react';
+
 import type {User} from '../api';
 import type {TransferResult} from '../api';
 import {getAccountDetails, getAccount, transfer} from '../api';
@@ -89,7 +90,7 @@ class NewPayment extends React.Component {
 
     onAmountChange(e) {
         const value = e.target.value;
-        this.state.isAmountValid = (!isNaN(value) && value > 0) ? true : false;
+        this.setState.isAmountValid = (!isNaN(value) && value > 0) ? true : false;
         this.setState({
             amount: value
         });

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import {Card, Header, Grid} from 'semantic-ui-react';
+
 import NewPayment from './NewPayment';
 import LastTransactions from './LastTransactions';
 
